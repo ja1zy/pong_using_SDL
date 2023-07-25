@@ -7,16 +7,16 @@ Paddle ::Paddle(int i){
     id =i;
     speed = 20.f;
     if(id==0){
-        x=0;
-        y= SCREEN_HEIGHT/2-height/2;
+        pos.x=0;
+        pos.y= SCREEN_HEIGHT/2-height/2;
     }else if(id==1){
-        x= SCREEN_WIDTH-width;
-        y= SCREEN_HEIGHT/2-height/2;
+        pos.x= SCREEN_WIDTH-width;
+        pos.y= SCREEN_HEIGHT/2-height/2;
     }
 
 
-    rect.x= (int)x;
-    rect.y=(int)y;
+    rect.x= (int)pos.x;
+    rect.y=(int)pos.y;
     rect.w=width;
     rect.h=height;
 
@@ -26,20 +26,17 @@ Paddle ::Paddle(int i){
 void Paddle::Update(){
 
 
-    y=y+ speed*dir;
-    if(y<0){
-        y=0;
+    pos.y=pos.y+ speed*dir;
+    if(pos.y<0){
+        pos.y=0;
     }
     //y is the top position of paddle.
     //height is the height of the paddle
-    if(y+height>SCREEN_HEIGHT){
-        y=SCREEN_HEIGHT-height;
+    if(pos.y+height>SCREEN_HEIGHT){
+        pos.y=SCREEN_HEIGHT-height;
     }
-
-
-
-
-    rect.y=y;
+    //allows the paddles to move
+    rect.y=pos.y;
 }
 void Paddle::setDir(int d){
     dir=d;

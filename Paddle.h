@@ -23,8 +23,8 @@ private:
     int dir=0;
     int width=20;
     int height=140;
-    float x;
-    float y;
+    Vec2 pos;
+
     float speed;
     SDL_Rect rect;
 

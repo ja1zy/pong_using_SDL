@@ -23,7 +23,7 @@ bool Game::Init() {
     leftPaddle = new Paddle(0);
     rightPaddle = new Paddle(1);
 
-
+    ball = new Ball;
     return true;
 }
 void Game::GameLoop() {
@@ -71,12 +71,15 @@ void Game:: HandleEvents(){
 
 
 
+
+
 }
 
 void Game::Update() {
   //updates paddles current position!
     leftPaddle->Update();
     rightPaddle->Update();
+    ball->Update();
 }
 void Game::Draw() {
     SDL_SetRenderDrawColor(renderer, 40, 40, 40, 255);
@@ -88,6 +91,8 @@ void Game::Draw() {
     SDL_RenderFillRect(renderer, leftPaddle-> GetRect());
     SDL_RenderFillRect(renderer, rightPaddle-> GetRect());
 
+    SDL_SetRenderDrawColor(renderer,40, 40, 255, 255);
+    SDL_RenderFillRect(renderer, ball-> GetRect());
 
 
     SDL_RenderPresent(renderer);

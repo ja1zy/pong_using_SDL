@@ -3,7 +3,7 @@
 //
 #pragma once
 #include "Paddle.h"
-
+#include "Ball.h"
 
 class Game{
 public:
@@ -25,6 +25,7 @@ private:
     SDL_Renderer* renderer = nullptr;
     class Paddle* leftPaddle;
     class Paddle* rightPaddle;
+    class Ball* ball;
 };
 
 

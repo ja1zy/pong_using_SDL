@@ -3,7 +3,7 @@ project(pong_tutorial)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(pong_tutorial main.cpp Game.h Game.cpp Paddle.cpp Paddle.h Utils.h)
+add_executable(pong_tutorial main.cpp Game.h Game.cpp Paddle.cpp Paddle.h Utils.h Ball.cpp Ball.h)
 
 
 set(SDL2_LIB "/Library/Frameworks/SDL2.framework/SDL2")
