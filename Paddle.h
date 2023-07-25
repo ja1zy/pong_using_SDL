@@ -16,9 +16,11 @@ public:
     SDL_Rect* GetRect();
 
     void setDir(int d);
-
+    int GetPosX();
+    int GetPosY();
 
 private:
+    //make bool that detects collision!
     int id;
     int dir=0;
     int width=20;

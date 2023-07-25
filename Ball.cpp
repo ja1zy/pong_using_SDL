@@ -8,12 +8,12 @@
 //
 Ball ::Ball(){
 
-    speed = 2.f;
+    speed = 9.f;
     //initial position
     pos.x=SCREEN_WIDTH/2-size/2;
     pos.y=SCREEN_HEIGHT/2-size/2;
-    vel.x=1;
-    vel.y=-1;
+    vel.x= VELOCITY[rand()%2];
+    vel.y=-VELOCITY[(rand()%2)];
 
 
     rect.x= (int)pos.x;
@@ -22,22 +22,46 @@ Ball ::Ball(){
     rect.h=size;
 
 };
+int Ball::GetPosX() {
+    return pos.x;
+}
+int Ball:: GetPosY(){
+    return pos.y;
+}
+
+
 void Ball::SetVel(float x, float y){
     vel.x=x;
     vel.y=y;
 }
+void Ball::DetectCollision(bool val){
+    collision = val;
+    if(speed<=10){
+        speed+=.1;
+    }
+}
+
+
 
 void Ball::Update(){
     pos.x = (int)pos.x+speed* vel.x;
     pos.y = (int)pos.y+speed*vel.y;
 
-    if(pos.x<=0){
-        Ball::SetVel(1,vel.y);
-        pos.x=0;
-    }else if(pos.x>=SCREEN_WIDTH-size){
-        Ball::SetVel(-1,vel.y);
-        pos.x=SCREEN_WIDTH-size;
-    }else if(pos.y<=0){
+    //use a boolean that checks posx of paddle and ball. to confirm!
+
+    /* collision stuff here! */
+    if(collision) {
+        if (pos.x <= size) {
+            Ball::SetVel(1, vel.y);
+            pos.x = size;
+        } else if (pos.x >= SCREEN_WIDTH-size*2) {
+            Ball::SetVel(-1, vel.y);
+            pos.x = SCREEN_WIDTH-size*2;
+        }
+    }
+
+    //Upper walls. this does not change!
+    if(pos.y<=0){
         Ball::SetVel(vel.x,1);
         pos.y=0;
     }else if (pos.y>=SCREEN_HEIGHT-size){
@@ -45,9 +69,12 @@ void Ball::Update(){
         pos.y=SCREEN_HEIGHT-size;
     }
 
+
+    //Have a game function that resets. make it in game!
+
     rect.x=pos.x;
     rect.y=pos.y;
-
+    collision=false;
 }
 
 

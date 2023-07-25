@@ -10,7 +10,7 @@ public:
     bool Init();
     void Shutdown();
     void GameLoop();
-
+    void Reset();
 
 
 private:

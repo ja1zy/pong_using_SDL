@@ -6,10 +6,11 @@
 #define PONG_TUTORIAL_UTILS_H
 
 #include <SDL2/SDL.h>
+#include <stdlib.h>
 
 const int SCREEN_WIDTH = 1270;
-const int SCREEN_HEIGHT = 800;
-
+const int SCREEN_HEIGHT = 700;
+const int VELOCITY[2]{-1,1};
 struct Vec2{
     float x;
     float y;

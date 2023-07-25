@@ -20,11 +20,12 @@ public:
     SDL_Rect* GetRect();
 
     void SetVel(float x, float y);
-
+    void DetectCollision(bool val);
+    int GetPosX();
+    int GetPosY();
 
 private:
-
-    //int dir=0;
+    bool collision=false;
     int size=20;
     Vec2 pos;
     Vec2 vel;

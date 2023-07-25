@@ -22,6 +22,15 @@ Paddle ::Paddle(int i){
 
 };
 
+int Paddle::GetPosX(){
+    return pos.x;
+}
+
+int Paddle:: GetPosY(){
+    return pos.y;
+}
+
+
 //drawing will happen where the renderer is
 void Paddle::Update(){
 

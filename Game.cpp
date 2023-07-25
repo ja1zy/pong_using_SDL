@@ -8,7 +8,7 @@ bool Game::Init() {
     if(SDL_Init(SDL_INIT_VIDEO) !=0 ){
         return false;
     }
-    window = SDL_CreateWindow("Pong_tutorial", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 1270,800, 0);
+    window = SDL_CreateWindow("Pong_tutorial", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 1270,700, 0);
     //display error if window not displayed
     if(!window){
         return false;
@@ -31,6 +31,7 @@ void Game::GameLoop() {
         HandleEvents();
         Update();
         Draw();
+
     }
 }
 void Game:: HandleEvents(){
@@ -67,12 +68,37 @@ void Game:: HandleEvents(){
     if(keystates[SDL_SCANCODE_DOWN]){
         rightPaddle->setDir(1);
     }
+    //set collision off by default
 
 
+    //detect collision and turn bool true or false accordingly.
+    if(ball->GetPosX()<=25 && ball->GetPosX()>=20){
+        //check LEFT PADDLE Y
+        if(ball->GetPosY()>=leftPaddle->GetPosY()-20&&
+            ball->GetPosY()<=leftPaddle->GetPosY()+160){
+            ball->DetectCollision(true);
+        }
+    }else if(ball->GetPosX()>=SCREEN_WIDTH-45&& ball->GetPosX()<=SCREEN_WIDTH-40){
+        //check right paddle
+        if(ball->GetPosY()>=rightPaddle->GetPosY()-20&&
+           ball->GetPosY()<=rightPaddle->GetPosY()+160){
+            ball->DetectCollision(true);
+        }
+    }//end of collision detection!
+
+    if(ball->GetPosX()<=0||ball->GetPosX()>=SCREEN_WIDTH){
+        Reset();
+    }
 
 
+}//end of event handler!
 
+void Game::Reset(){
+    //initialzie everything again!
+    leftPaddle = new Paddle(0);
+    rightPaddle = new Paddle(1);
 
+    ball = new Ball;
 }
 
 void Game::Update() {
