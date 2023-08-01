@@ -94,7 +94,13 @@ void Game:: HandleEvents(){
 }//end of event handler!
 
 void Game::Reset(){
-    //initialzie everything again!
+
+    if(ball->GetPosX()<=0){
+        //add one to player 2 !
+    }else{
+        //add one to player 1!
+    }
+
     leftPaddle = new Paddle(0);
     rightPaddle = new Paddle(1);
 
