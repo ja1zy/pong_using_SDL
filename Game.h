@@ -4,6 +4,8 @@
 #pragma once
 #include "Paddle.h"
 #include "Ball.h"
+#include "Score.h"
+#include "Utils.h"
 
 class Game{
 public:
@@ -11,6 +13,8 @@ public:
     void Shutdown();
     void GameLoop();
     void Reset();
+    bool pause=false;
+    bool pause2=false;
 
 
 private:
@@ -23,9 +27,17 @@ private:
 
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
+    SDL_Surface* surface= nullptr;
+    SDL_Texture* texture= nullptr;
+    TTF_Font* font;
+
+
     class Paddle* leftPaddle;
     class Paddle* rightPaddle;
     class Ball* ball;
+    class Score* score1;
+    class Score* score2;
+
 };
 
 

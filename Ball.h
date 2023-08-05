@@ -14,7 +14,7 @@
 class Ball {
 public:
     Ball();
-    void Draw();
+
     void Update();
     //have to get a getter
     SDL_Rect* GetRect();

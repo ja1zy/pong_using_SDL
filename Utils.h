@@ -4,7 +4,7 @@
 
 #ifndef PONG_TUTORIAL_UTILS_H
 #define PONG_TUTORIAL_UTILS_H
-
+#include <SDL2_ttf/SDL_ttf.h>
 #include <SDL2/SDL.h>
 #include <stdlib.h>
 

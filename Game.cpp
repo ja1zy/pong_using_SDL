@@ -3,11 +3,17 @@
 //
 
 #include "Game.h"
+#include <iostream>
 bool Game::Init() {
 
     if(SDL_Init(SDL_INIT_VIDEO) !=0 ){
         return false;
     }
+    if(TTF_Init()<0){
+
+       return false;
+    }
+
     window = SDL_CreateWindow("Pong_tutorial", SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 1270,700, 0);
     //display error if window not displayed
     if(!window){
@@ -19,9 +25,26 @@ bool Game::Init() {
     if(!renderer){
         return false;
     }
+
+
+    font = TTF_OpenFont("Roboto-Italic.ttf", 50);
+    if(font==NULL){
+        std::cout<<"yooooooo";
+    }
+
+
+    /*
+     * this is to built the text in the pong tutorial!
+    surface = TTF_RenderText_Solid(font, "0", {0xFF, 0xFF, 0xFF, 0xFF});
+    texture = SDL_CreateTextureFromSurface(renderer, surface);
+    */
     //initialzie the two paddles
     leftPaddle = new Paddle(0);
     rightPaddle = new Paddle(1);
+
+    score1= new Score(70,70);
+    score2 = new Score(70,70);
+
 
     ball = new Ball;
     return true;
@@ -29,9 +52,10 @@ bool Game::Init() {
 void Game::GameLoop() {
     while(isRunning){
         HandleEvents();
-        Update();
-        Draw();
-
+        if(!pause){
+            Update();
+            Draw();
+        }
     }
 }
 void Game:: HandleEvents(){
@@ -41,14 +65,25 @@ void Game:: HandleEvents(){
             isRunning  = false;
         }
     }
-
     const Uint8* keystates = SDL_GetKeyboardState(NULL);
 
     if(keystates[SDL_SCANCODE_ESCAPE]){
         isRunning = false;
     }
 
+    if(keystates[SDL_SCANCODE_P]){
+        pause =true;
+    }
 
+    if (keystates[SDL_SCANCODE_G]){
+        pause=false;
+        pause2=true;
+    }
+
+    if(pause||keystates[SDL_SCANCODE_G]){
+        return;
+    }
+    pause2=false;
     // left paddle movemments
     //event is polled every frame;
     //this line of code guarantees that movement is stopped
@@ -89,16 +124,14 @@ void Game:: HandleEvents(){
     if(ball->GetPosX()<=0||ball->GetPosX()>=SCREEN_WIDTH){
         Reset();
     }
-
-
 }//end of event handler!
 
 void Game::Reset(){
 
     if(ball->GetPosX()<=0){
-        //add one to player 2 !
+      score1->Update();
     }else{
-        //add one to player 1!
+       score2->Update();
     }
 
     leftPaddle = new Paddle(0);
@@ -111,26 +144,39 @@ void Game::Update() {
   //updates paddles current position!
     leftPaddle->Update();
     rightPaddle->Update();
-    ball->Update();
+    if(!pause2){
+        ball->Update();
+    }
+
 }
 void Game::Draw() {
+    //THIS CLEARS THE SCREEN FOR US, SO WE DON'T SEE THE PAST STUFF
     SDL_SetRenderDrawColor(renderer, 40, 40, 40, 255);
     SDL_RenderClear(renderer);
 
-    //draw paddles
+    //draw white paddles
     SDL_SetRenderDrawColor(renderer,255,255,255,255);
-
     SDL_RenderFillRect(renderer, leftPaddle-> GetRect());
     SDL_RenderFillRect(renderer, rightPaddle-> GetRect());
 
+    //draw scoreboard
+    SDL_Color Color = {200, 200, 200};
+    TTF_RenderUTF8_Blended(font, "Hello World!", Color);
+
+
+    //draw ball
     SDL_SetRenderDrawColor(renderer,40, 40, 255, 255);
     SDL_RenderFillRect(renderer, ball-> GetRect());
 
 
+    //RENDER CURRENT STUFF,like the present!
     SDL_RenderPresent(renderer);
 }
 void Game::Shutdown(){
+    //clean up
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    TTF_CloseFont(font);
     SDL_Quit();
+    TTF_Quit();
 }

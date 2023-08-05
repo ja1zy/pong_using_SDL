@@ -8,7 +8,7 @@
 //
 Ball ::Ball(){
 
-    speed = 9.f;
+    speed = 3.f;
     //initial position
     pos.x=SCREEN_WIDTH/2-size/2;
     pos.y=SCREEN_HEIGHT/2-size/2;
@@ -71,7 +71,6 @@ void Ball::Update(){
 
 
     //Have a game function that resets. make it in game!
-
     rect.x=pos.x;
     rect.y=pos.y;
     collision=false;
