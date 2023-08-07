@@ -13,16 +13,22 @@ class Score {
 public:
     Score(SDL_Renderer* renderer, TTF_Font* font, int x, int y);
     void Update();
-    void Reset();
+     SDL_Rect * getRect();
+     void Reset();
+     void destroy();
+
+    SDL_Texture* texture;
 
 private:
     SDL_Rect rect;
     int height;
     int width;
     int score=0;
+    const char* scores[8]{};
     SDL_Surface* surface;
-    SDL_Texture* texture;
-    SDL_Renderer renderer1;
+
+    SDL_Renderer* renderer;
+    TTF_Font* font;
 };
 
 

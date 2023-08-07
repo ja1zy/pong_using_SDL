@@ -42,8 +42,8 @@ bool Game::Init() {
     leftPaddle = new Paddle(0);
     rightPaddle = new Paddle(1);
 
-    score1= new Score(70,70);
-    score2 = new Score(70,70);
+    score1= new Score(renderer,font, SCREEN_WIDTH/ 4, 20);
+    score2 = new Score(renderer,font, 3*SCREEN_WIDTH / 4, 20);
 
 
     ball = new Ball;
@@ -147,6 +147,7 @@ void Game::Update() {
     if(!pause2){
         ball->Update();
     }
+    //score update too!
 
 }
 void Game::Draw() {
@@ -160,8 +161,9 @@ void Game::Draw() {
     SDL_RenderFillRect(renderer, rightPaddle-> GetRect());
 
     //draw scoreboard
-    SDL_Color Color = {200, 200, 200};
-    TTF_RenderUTF8_Blended(font, "Hello World!", Color);
+
+    SDL_RenderCopy(renderer, score1->texture, nullptr, score1->getRect());
+    SDL_RenderCopy(renderer, score2->texture, nullptr, score2->getRect());
 
 
     //draw ball
@@ -175,8 +177,12 @@ void Game::Draw() {
 void Game::Shutdown(){
     //clean up
     SDL_DestroyRenderer(renderer);
+    score1->destroy();
+    score2->destroy();
     SDL_DestroyWindow(window);
     TTF_CloseFont(font);
     SDL_Quit();
     TTF_Quit();
+
+
 }

@@ -7,6 +7,9 @@
 #include <SDL2_ttf/SDL_ttf.h>
 #include <SDL2/SDL.h>
 #include <stdlib.h>
+#include<iostream>
+#include <cstring>
+
 
 const int SCREEN_WIDTH = 1270;
 const int SCREEN_HEIGHT = 700;
