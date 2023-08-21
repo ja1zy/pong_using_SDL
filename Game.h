@@ -14,7 +14,7 @@ public:
     void GameLoop();
     void Reset();
     bool pause=false;
-    bool pause2=false;
+    bool pauseBall=false;
 
 
 private:

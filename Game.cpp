@@ -29,7 +29,7 @@ bool Game::Init() {
 
     font = TTF_OpenFont("Roboto-Italic.ttf", 50);
     if(font==NULL){
-        std::cout<<"yooooooo";
+        std::cout<<"Font not loaded correctly";
     }
 
 
@@ -52,6 +52,7 @@ bool Game::Init() {
 void Game::GameLoop() {
     while(isRunning){
         HandleEvents();
+        //if pause is true, stop updating and drawing
         if(!pause){
             Update();
             Draw();
@@ -59,6 +60,7 @@ void Game::GameLoop() {
     }
 }
 void Game:: HandleEvents(){
+    pauseBall=false;
     SDL_Event event;
     while(SDL_PollEvent(&event)){
         if(event.type==SDL_QUIT){
@@ -73,17 +75,19 @@ void Game:: HandleEvents(){
 
     if(keystates[SDL_SCANCODE_P]){
         pause =true;
+        return;
     }
 
     if (keystates[SDL_SCANCODE_G]){
         pause=false;
-        pause2=true;
-    }
-
-    if(pause||keystates[SDL_SCANCODE_G]){
+        pauseBall=true;
         return;
     }
-    pause2=false;
+
+    if(pause){
+        return;
+    }
+
     // left paddle movemments
     //event is polled every frame;
     //this line of code guarantees that movement is stopped
@@ -104,7 +108,6 @@ void Game:: HandleEvents(){
         rightPaddle->setDir(1);
     }
     //set collision off by default
-
 
     //detect collision and turn bool true or false accordingly.
     if(ball->GetPosX()<=25 && ball->GetPosX()>=20){
@@ -144,7 +147,7 @@ void Game::Update() {
   //updates paddles current position!
     leftPaddle->Update();
     rightPaddle->Update();
-    if(!pause2){
+    if(!pauseBall){
         ball->Update();
     }
     //score update too!
@@ -183,6 +186,5 @@ void Game::Shutdown(){
     TTF_CloseFont(font);
     SDL_Quit();
     TTF_Quit();
-
 
 }

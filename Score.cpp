@@ -15,7 +15,7 @@ Score::Score(SDL_Renderer* renderer1, TTF_Font* font1,int x, int y){
 
     SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
 
-    //SDL Queryfills the width and height values for us. otherwise, they are just zero!
+    //SDL Query fills the width and height values for us. otherwise, they are just zero!
     //so that why rect. w and h are the at bottom.
     rect.x= x;
     rect.y=y;

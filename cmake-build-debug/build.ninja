@@ -84,6 +84,13 @@ build CMakeFiles/pong_tutorial.dir/Score.cpp.o: CXX_COMPILER__pong_tutorial_Debu
   OBJECT_DIR = CMakeFiles/pong_tutorial.dir
   OBJECT_FILE_DIR = CMakeFiles/pong_tutorial.dir
 
+build CMakeFiles/pong_tutorial.dir/Menu.cpp.o: CXX_COMPILER__pong_tutorial_Debug /Users/jasdeepsaran/CLionProjects/pong_tutorial/Menu.cpp || cmake_object_order_depends_target_pong_tutorial
+  DEP_FILE = CMakeFiles/pong_tutorial.dir/Menu.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++17
+  INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers -I/Library/Frameworks/SDL2_image.framework/Headers -I/Library/Frameworks/SDL2_ttf.framework/Headers -F/Library/Frameworks
+  OBJECT_DIR = CMakeFiles/pong_tutorial.dir
+  OBJECT_FILE_DIR = CMakeFiles/pong_tutorial.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target pong_tutorial
@@ -92,7 +99,7 @@ build CMakeFiles/pong_tutorial.dir/Score.cpp.o: CXX_COMPILER__pong_tutorial_Debu
 #############################################
 # Link the executable pong_tutorial
 
-build pong_tutorial: CXX_EXECUTABLE_LINKER__pong_tutorial_Debug CMakeFiles/pong_tutorial.dir/main.cpp.o CMakeFiles/pong_tutorial.dir/Game.cpp.o CMakeFiles/pong_tutorial.dir/Paddle.cpp.o CMakeFiles/pong_tutorial.dir/Ball.cpp.o CMakeFiles/pong_tutorial.dir/Score.cpp.o | /Library/Frameworks/SDL2.framework/SDL2 /Library/Frameworks/SDL2_image.framework/SDL2_image /Library/Frameworks/SDL2_ttf.framework/SDL2_ttf
+build pong_tutorial: CXX_EXECUTABLE_LINKER__pong_tutorial_Debug CMakeFiles/pong_tutorial.dir/main.cpp.o CMakeFiles/pong_tutorial.dir/Game.cpp.o CMakeFiles/pong_tutorial.dir/Paddle.cpp.o CMakeFiles/pong_tutorial.dir/Ball.cpp.o CMakeFiles/pong_tutorial.dir/Score.cpp.o CMakeFiles/pong_tutorial.dir/Menu.cpp.o | /Library/Frameworks/SDL2.framework/SDL2 /Library/Frameworks/SDL2_image.framework/SDL2_image /Library/Frameworks/SDL2_ttf.framework/SDL2_ttf
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   LINK_LIBRARIES = -Wl,-rpath,/Library/Frameworks  /Library/Frameworks/SDL2.framework/SDL2  /Library/Frameworks/SDL2_image.framework/SDL2_image  /Library/Frameworks/SDL2_ttf.framework/SDL2_ttf
   OBJECT_DIR = CMakeFiles/pong_tutorial.dir

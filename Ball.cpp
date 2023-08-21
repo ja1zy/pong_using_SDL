@@ -6,7 +6,7 @@
 //
 // Created by Jasdeep saran on 2023-07-22.
 //
-Ball ::Ball(){
+Ball::Ball(){
 
     speed = 3.f;
     //initial position
@@ -37,7 +37,7 @@ void Ball::SetVel(float x, float y){
 void Ball::DetectCollision(bool val){
     collision = val;
     if(speed<=10){
-        speed+=.1;
+        speed+=.25;
     }
 }
 
@@ -69,8 +69,6 @@ void Ball::Update(){
         pos.y=SCREEN_HEIGHT-size;
     }
 
-
-    //Have a game function that resets. make it in game!
     rect.x=pos.x;
     rect.y=pos.y;
     collision=false;
