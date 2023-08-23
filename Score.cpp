@@ -34,8 +34,10 @@ void Score::Update() {
     if(score==8){
         Reset();
     }
-    SDL_FreeSurface(surface);
-    SDL_DestroyTexture(texture);
+    //this destroys the surface
+    //SDL_FreeSurface(surface);
+    //SDL_DestroyTexture(texture);
+    destroy();
 
     surface = TTF_RenderText_Solid(font, std::to_string(score).c_str(), {0xFF, 0xFF, 0xFF, 0xFF});
     texture = SDL_CreateTextureFromSurface(renderer, surface);

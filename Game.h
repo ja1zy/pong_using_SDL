@@ -6,6 +6,7 @@
 #include "Ball.h"
 #include "Score.h"
 #include "Utils.h"
+#include "Menu.h"
 
 class Game{
 public:
@@ -37,6 +38,7 @@ private:
     class Ball* ball;
     class Score* score1;
     class Score* score2;
+    class Menu* menu;
 
 };
 

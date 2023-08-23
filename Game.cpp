@@ -39,12 +39,12 @@ bool Game::Init() {
     texture = SDL_CreateTextureFromSurface(renderer, surface);
     */
     //initialzie the two paddles
-    leftPaddle = new Paddle(0);
-    rightPaddle = new Paddle(1);
+    leftPaddle =  new Paddle(0);
+    rightPaddle =  new Paddle(1);
 
     score1= new Score(renderer,font, SCREEN_WIDTH/ 4, 20);
     score2 = new Score(renderer,font, 3*SCREEN_WIDTH / 4, 20);
-
+    menu = new Menu(renderer, font, SCREEN_WIDTH/4,SCREEN_HEIGHT/2);
 
     ball = new Ball;
     return true;
@@ -55,8 +55,8 @@ void Game::GameLoop() {
         //if pause is true, stop updating and drawing
         if(!pause){
             Update();
-            Draw();
         }
+        Draw();
     }
 }
 void Game:: HandleEvents(){
@@ -163,8 +163,9 @@ void Game::Draw() {
     SDL_RenderFillRect(renderer, leftPaddle-> GetRect());
     SDL_RenderFillRect(renderer, rightPaddle-> GetRect());
 
-    //draw scoreboard
 
+
+    //draw scoreboard
     SDL_RenderCopy(renderer, score1->texture, nullptr, score1->getRect());
     SDL_RenderCopy(renderer, score2->texture, nullptr, score2->getRect());
 
@@ -172,6 +173,10 @@ void Game::Draw() {
     //draw ball
     SDL_SetRenderDrawColor(renderer,40, 40, 255, 255);
     SDL_RenderFillRect(renderer, ball-> GetRect());
+
+
+    if(pause)
+        SDL_RenderCopy(renderer, menu->texture, nullptr, menu->getRect());
 
 
     //RENDER CURRENT STUFF,like the present!
