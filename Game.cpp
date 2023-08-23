@@ -132,9 +132,9 @@ void Game:: HandleEvents(){
 void Game::Reset(){
 
     if(ball->GetPosX()<=0){
-      score1->Update();
+      score2->Update();
     }else{
-       score2->Update();
+       score1->Update();
     }
 
     leftPaddle = new Paddle(0);
