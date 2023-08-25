@@ -40,7 +40,14 @@ void Ball::DetectCollision(bool val){
         speed+=.25;
     }
 }
-
+void Ball::Reset() {
+    vel.x= VELOCITY[rand()%2];
+    vel.y=-VELOCITY[(rand()%2)];
+    pos.x=SCREEN_WIDTH/2-size/2;
+    pos.y=SCREEN_HEIGHT/2-size/2;
+    rect.x= (int)pos.x;
+    rect.y=(int)pos.y;
+}
 
 
 void Ball::Update(){

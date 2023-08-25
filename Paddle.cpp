@@ -51,6 +51,24 @@ void Paddle::setDir(int d){
     dir=d;
 }
 
+void Paddle::Reset(){
+    if(id==0){
+        pos.x=0;
+        pos.y= SCREEN_HEIGHT/2-height/2;
+    }else if(id==1){
+        pos.x= SCREEN_WIDTH-width;
+        pos.y= SCREEN_HEIGHT/2-height/2;
+    }
+
+
+    rect.x= (int)pos.x;
+    rect.y=(int)pos.y;
+
+}
+
+
+
+
 SDL_Rect* Paddle::GetRect() {
     return &rect;
 }

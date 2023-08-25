@@ -137,10 +137,16 @@ void Game::Reset(){
        score1->Update();
     }
 
-    leftPaddle = new Paddle(0);
-    rightPaddle = new Paddle(1);
 
-    ball = new Ball;
+
+
+    /*
+     * change to default values
+     * to avoid memory leaks!!!!
+     */
+    leftPaddle->Reset();
+    rightPaddle->Reset();
+    ball->Reset();
 }
 
 void Game::Update() {

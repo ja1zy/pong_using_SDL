@@ -21,6 +21,8 @@ public:
 
     void SetVel(float x, float y);
     void DetectCollision(bool val);
+    void Reset();
+
     int GetPosX();
     int GetPosY();
 

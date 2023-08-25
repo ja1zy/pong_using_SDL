@@ -26,6 +26,7 @@
 
 };
 
+
 bool Menu::getPause() {
     return pause;
 }

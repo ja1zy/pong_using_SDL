@@ -18,6 +18,7 @@ public:
     void setDir(int d);
     int GetPosX();
     int GetPosY();
+    void Reset();
 
 private:
     //make bool that detects collision!

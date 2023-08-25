@@ -17,7 +17,6 @@ public:
     bool getPause();
 
 
-
 private:
     SDL_Rect rect;
     int height;
